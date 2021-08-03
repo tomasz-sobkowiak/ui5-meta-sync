@@ -1,0 +1,23 @@
+{
+  "name": "ui5-meta-sync",
+  "version": "0.0.1",
+  "description": "SAPUI5 Metadata Synchronization tool (SAP->VSC)",
+  "main": "./src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomasz-sobkowiak/ui5-meta-sync.git"
+  },
+  "keywords": [
+    "sapui5",
+    "metadata",
+    "oData",
+    "VSC"
+  ],
+  "devDependencies": {
+    "xml2js": "0.4.23",
+    "xml-formatter": "2.4.0"
+  },
+  "author": "Tomasz Sobkowiak",
+  "license": "MIT",
+  "homepage": "https://github.com/tomasz-sobkowiak/ui5-meta-sync#readme"
+}
