@@ -19,15 +19,19 @@
 # Usage
 
   - Add the below line into the package.json of your project:
+  
     ```"ui5-meta-sync": "https://github.com/tomasz-sobkowiak/ui5-meta-sync"```
   - Type ```npm install```
   - Add the following command to the project's ```scripts``` section in the ```project.json```:
+  
     ```"sync:metadata": "node ./node_modules/ui5-meta-sync/src/index.js"```
   
   - In order to execute the metadata synchronization type in CMD the below command:
+  
     ```npm run sync:metadata```
   
   - If everything is fine, you should see the success message in the console:
+  
     ```[SUCCESS] - Metadata synchronized successfully!```
 
 # License
