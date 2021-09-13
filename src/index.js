@@ -10,7 +10,7 @@ dotenv.config();
 
 // Parameters
 var sHostname = process.env.UI5_MS_HOSTNAME;
-var sProtocol = process.env.UI5_MS_PROTOCOL || 'https';
+var sProtocol = process.env.UI5_MS_PROTOCOL || 'HTTPS';
 var sPort = process.env.UI5_MS_PORT || '443'; 
 var sSapClient = process.env.UI5_MS_SAPCLIENT || '400';
 var sServiceName = process.env.UI5_MS_SERVICENAME;
@@ -31,24 +31,30 @@ var options = {
     }
 };
 
-// Get metadata
-https.get(options, function (oResponse) {
-    var sData = "";
-    // fetch data from oDataService
-    oResponse.on('data', function (sNewData) {
-        sData += sNewData.toString();
-    })
-    // format xml and save it as a file
-    oResponse.on('end', function () {
-        sData = xmlPrettyPrnter(sData);
-        fs.writeFile(sMetadataFile, sData, function (sError) {
-            if (sError) {
-                return console.log(sError);
-            }
+if(sProtocol === 'HTTPS'){
+    // Ignore self-signed certificates
+    process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+    // Get metadata
+    https.get(options, function (oResponse) {
+        var sData = "";
+        // fetch data from oDataService
+        oResponse.on('data', function (sNewData) {
+            sData += sNewData.toString();
+        })
+        // format xml and save it as a file
+        oResponse.on('end', function () {
+            sData = xmlPrettyPrnter(sData);
+            fs.writeFile(sMetadataFile, sData, function (sError) {
+                if (sError) {
+                    return console.log(sError);
+                }
+            });
+            console.log('[SUCCESS] - Metadata synchronized successfully!');
+        })
+        oResponse.on('error', function (oError) {
+            console.log("[ERROR]: " + oError.message);
         });
-        console.log('[SUCCESS] - Metadata synchronized successfully!');
-    })
-    oResponse.on('error', function (oError) {
-        console.log("[ERROR]: " + oError.message);
     });
-});
+}else{
+    console.log('[ERROR]: HTTP protocol not supported yet.');
+}

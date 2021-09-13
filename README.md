@@ -16,6 +16,18 @@
 | UI5_MS_PATH         | './webapp/localService' | Directory of the metadata.xml file
 | UI5_MS_FILENAME     | 'metadata.xml'          | Metadata file name
 
+## Example of .env file
+
+UI5_MS_HOSTNAME=sap-001.testdomain.com
+UI5_MS_PORT=1443
+UI5_MS_SERVICENAME=Z_MYSERVICE_ODATA_SRV
+UI5_MS_SAPCLIENT=123
+UI5_MS_USER=<SAP_USER>
+UI5_MS_PASS=<SAP_PASS>
+
+For the above parameters, the metadata url would look as following:
+https://sap-001.testdomain.com:1443/sap/opu/odata/sap/Z_MYSERVICE_ODATA_SRV/$metadata?sap-client=123
+
 # Usage
 
   - Add the below line into the package.json of your project:
